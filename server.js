@@ -41,45 +41,43 @@ app.get("/detail", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "detail.html"));
 });
 
-// app.get('/details', async (req, res) => {
-//   const menuKey = req.query.key;
-//   const menuData = JSON.parse(await fs.promises.readFile('./public/example_menu.json', 'utf8'));
-//   const matchedMenu = menuData.find(menu => menu['menu_name(eng)'] === menuKey);
-
-//   if (matchedMenu) {
-//     res.send(`
-//       <h1>${matchedMenu['menu_name(eng)']}</h1>
-//       <img src="${matchedMenu['menu_img_url']}" alt="${matchedMenu['menu_name(kor)']} 이미지" style="max-width: 100%;" />
-//       <p><strong>Ingredients:</strong> ${matchedMenu['menu_ingredients']}</p>
-//       <p><strong>Spicy:</strong> ${matchedMenu['menu_spicy']}</p>
-//       <p><strong>Details:</strong> ${matchedMenu['menu_details']}</p>
-//     `);
-//   } else {
-//     res.status(404).send('Menu not found');
-//   }
-// });
-
 app.get("/details", async (req, res) => {
   const menuKey = req.query.key;
   const menuData = JSON.parse(
     await fs.promises.readFile("./public/example_menu.json", "utf8")
   );
-  const matchedMenu = menuData.find(
-    (menu) => menu["menu_name(eng)"] === menuKey
-  );
+  const matchedMenu = menuData.find((menu) => menu["menu_name_en"] === menuKey);
 
   if (matchedMenu) {
     res.json({
-      menu_name: matchedMenu["menu_name(eng)"],
-      menu_img_url: matchedMenu["menu_img_url"],
-      menu_ingredients: matchedMenu["menu_ingredients"],
-      menu_spicy: matchedMenu["menu_spicy"],
-      menu_details: matchedMenu["menu_details"],
+      menu_name_kor: matchedMenu["menu_name_ko"],
     });
   } else {
     res.status(404).json({ error: "Menu not found" });
   }
 });
+
+// app.get("/details", async (req, res) => {
+//   const menuKey = req.query.key;
+//   const menuData = JSON.parse(
+//     await fs.promises.readFile("./public/example_menu.json", "utf8")
+//   );
+//   const matchedMenu = menuData.find(
+//     (menu) => menu["menu_name(eng)"] === menuKey
+//   );
+
+//   if (matchedMenu) {
+//     res.json({
+//       menu_name: matchedMenu["menu_name(eng)"],
+//       menu_img_url: matchedMenu["menu_img_url"],
+//       menu_ingredients: matchedMenu["menu_ingredients"],
+//       menu_spicy: matchedMenu["menu_spicy"],
+//       menu_details: matchedMenu["menu_details"],
+//     });
+//   } else {
+//     res.status(404).json({ error: "Menu not found" });
+//   }
+// });
 
 async function isImageValid(base64Data) {
   try {

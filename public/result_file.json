@@ -1,10 +1,10 @@
 {
     "version": "V2",
     "requestId": "string",
-    "timestamp": 1694105836639,
+    "timestamp": 1694109398082,
     "images": [
         {
-            "uid": "3a4729673db84b34aede8fa8ceece775",
+            "uid": "5521cac325824defb7e127ffd4e63683",
             "name": "menu",
             "inferResult": "SUCCESS",
             "message": "SUCCESS",
@@ -17,7 +17,224 @@
                 "pageIndex": 0,
                 "longImage": false
             },
-            "fields": []
+            "fields": [
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 139,
+                                "y": 42
+                            },
+                            {
+                                "x": 222,
+                                "y": 44
+                            },
+                            {
+                                "x": 222,
+                                "y": 69
+                            },
+                            {
+                                "x": 138,
+                                "y": 67
+                            }
+                        ]
+                    },
+                    "inferText": "가마솥추어탕",
+                    "inferConfidence": 0.9986,
+                    "type": "NORMAL",
+                    "lineBreak": false
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 245,
+                                "y": 47
+                            },
+                            {
+                                "x": 308,
+                                "y": 47
+                            },
+                            {
+                                "x": 308,
+                                "y": 69
+                            },
+                            {
+                                "x": 245,
+                                "y": 70
+                            }
+                        ]
+                    },
+                    "inferText": "김치찌개",
+                    "inferConfidence": 0.9991,
+                    "type": "NORMAL",
+                    "lineBreak": true
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 142,
+                                "y": 89
+                            },
+                            {
+                                "x": 212,
+                                "y": 91
+                            },
+                            {
+                                "x": 211,
+                                "y": 114
+                            },
+                            {
+                                "x": 142,
+                                "y": 112
+                            }
+                        ]
+                    },
+                    "inferText": "가쿠하이볼",
+                    "inferConfidence": 1,
+                    "type": "NORMAL",
+                    "lineBreak": false
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 232,
+                                "y": 93
+                            },
+                            {
+                                "x": 296,
+                                "y": 92
+                            },
+                            {
+                                "x": 297,
+                                "y": 110
+                            },
+                            {
+                                "x": 232,
+                                "y": 112
+                            }
+                        ]
+                    },
+                    "inferText": "어니언돈카츠",
+                    "inferConfidence": 0.9942,
+                    "type": "NORMAL",
+                    "lineBreak": true
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 145,
+                                "y": 138
+                            },
+                            {
+                                "x": 215,
+                                "y": 138
+                            },
+                            {
+                                "x": 215,
+                                "y": 157
+                            },
+                            {
+                                "x": 145,
+                                "y": 157
+                            }
+                        ]
+                    },
+                    "inferText": "차돌야채볶음",
+                    "inferConfidence": 0.9988,
+                    "type": "NORMAL",
+                    "lineBreak": false
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 229,
+                                "y": 138
+                            },
+                            {
+                                "x": 286,
+                                "y": 138
+                            },
+                            {
+                                "x": 286,
+                                "y": 157
+                            },
+                            {
+                                "x": 229,
+                                "y": 157
+                            }
+                        ]
+                    },
+                    "inferText": "통마늘치킨",
+                    "inferConfidence": 1,
+                    "type": "NORMAL",
+                    "lineBreak": true
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 146,
+                                "y": 182
+                            },
+                            {
+                                "x": 208,
+                                "y": 180
+                            },
+                            {
+                                "x": 209,
+                                "y": 200
+                            },
+                            {
+                                "x": 146,
+                                "y": 201
+                            }
+                        ]
+                    },
+                    "inferText": "삼색수제비",
+                    "inferConfidence": 1,
+                    "type": "NORMAL",
+                    "lineBreak": false
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 225,
+                                "y": 179
+                            },
+                            {
+                                "x": 291,
+                                "y": 177
+                            },
+                            {
+                                "x": 292,
+                                "y": 197
+                            },
+                            {
+                                "x": 226,
+                                "y": 199
+                            }
+                        ]
+                    },
+                    "inferText": "산골도토리묵",
+                    "inferConfidence": 0.9918,
+                    "type": "NORMAL",
+                    "lineBreak": true
+                }
+            ]
         }
     ]
 }
