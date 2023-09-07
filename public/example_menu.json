@@ -1,0 +1,74 @@
+[
+ {
+  "menu_name(kor)": "돈까스",
+  "menu_name(eng)": "Pork Cutlet",
+  "menu_img_url": "https:\/\/img.freepik.com\/premium-photo\/savory-delights-closeup-of-deepfried-orange-chicken-served-on-a-bed-of-steamed-white-rice-in-4k_944008-417.jpg?w=996",
+  "menu_ingredients": "Pork, Flour, Egg",
+  "menu_spicy": "not spicy",
+  "menu_details": "Cutlets made by mincing pork and then coating it with batter and frying it"
+ },
+ {
+  "menu_name(kor)": "돈가스",
+  "menu_name(eng)": "Pork Cutlet",
+  "menu_ingredients": "Pork, Flour, Egg",
+  "menu_spicy": "not spicy",
+  "menu_details": "Cutlets made by mincing pork and then coating it with batter and frying it"
+ },
+ {
+  "menu_name(kor)": "치즈돈까스",
+  "menu_name(eng)": "Cheese Pork Cutlet",
+  "menu_ingredients": "Cheese, Pork, Flour, Egg",
+  "menu_spicy": "not spicy",
+  "menu_details": "details of cheese port cutlet"
+ },
+ {
+  "menu_name(kor)": "치즈돈가스",
+  "menu_name(eng)": "Cheese Pork Cutlet",
+  "menu_ingredients": "Cheese, Pork, Flour, Egg",
+  "menu_spicy": "not spicy",
+  "menu_details": "details of cheese port cutlet"
+ },
+ {
+  "menu_name(kor)": "카레돈까스",
+  "menu_name(eng)": "Curry Pork Cutlet",
+  "menu_ingredients": "Curry, Pork, Flour, Egg",
+  "menu_spicy": "little spicy",
+  "menu_details": "details of curry pork cutlet"
+ },
+ {
+  "menu_name(kor)": "카레돈가스",
+  "menu_name(eng)": "Curry Pork Cutlet",
+  "menu_ingredients": "Curry, Pork, Flour, Egg",
+  "menu_spicy": "little spicy",
+  "menu_details": "details of curry pork cutlet"
+ },
+ {
+  "menu_name(kor)": "야채김밥",
+  "menu_name(eng)": "Vegetable kimbap",
+  "menu_img_url": "https:\/\/img.freepik.com\/free-photo\/fresh-seafood-sushi-plate-with-healthy-rolled-up-veggies-generated-by-ai_188544-10365.jpg?w=740&t=st=1692434951~exp=1692435551~hmac=cf22151ffc8f967af47f0c4289f44df14c5e53f3a3bce7cfb36f4821ae288311",
+  "menu_ingredients": "rice, seaweed, Egg",
+  "menu_spicy": "not spicy",
+  "menu_details": "details of vegetable kimbap"
+ },
+ {
+  "menu_name(kor)": "치즈김밥",
+  "menu_name(eng)": "Cheese kimbap",
+  "menu_ingredients": "rice, seaweed, cheese",
+  "menu_spicy": "not spicy",
+  "menu_details": "details of cheese kimbap"
+ },
+ {
+  "menu_name(kor)": "참치김밥",
+  "menu_name(eng)": "Tuna kimbap",
+  "menu_ingredients": "rice, seaweed, tuna",
+  "menu_spicy": "not spicy",
+  "menu_details": "details of tuna kimbap"
+ },
+ {
+  "menu_name(kor)": "돈까스김밥",
+  "menu_name(eng)": "Port cutlet kimbap",
+  "menu_ingredients": "rice, seaweed, port, flour, egg",
+  "menu_spicy": "not spicy",
+  "menu_details": "details of port cutlet kimbap"
+ }
+]

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menuall</title>
+    <style>
+      #logo {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 100px; /* 로고 크기 조절 */
+      }
+      h1 {
+        text-align: center; /* 텍스트 가운데 정렬 */
+      }
+      #video,
+      #canvas {
+        display: block;
+        margin-left: auto;
+        margin-right: auto; /* 비디오와 캔버스 가운데 정렬 */
+      }
+      #snap {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+      }
+      #translate {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px; /* size of the rectangle */
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="logo" src="logo.JPG" alt="Logo" />
+
+    <h1>Scan the Menu</h1>
+
+    <!-- autoplay, muted, playsinline 속성 추가 -->
+    <video
+      id="video"
+      width="320"
+      height="240"
+      autoplay
+      muted
+      playsinline
+    ></video>
+
+    <button id="snap">Take Picture</button>
+    <canvas id="canvas" width="320" height="240"></canvas>
+
+    <script>
+      const video = document.getElementById("video");
+      const snapBtn = document.getElementById("snap");
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      navigator.mediaDevices
+        .getUserMedia({ video: { facingMode: "environment" } })
+        .then((stream) => {
+          video.srcObject = stream;
+        })
+        .catch(console.error);
+
+      snapBtn.addEventListener("click", async () => {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const data = canvas.toDataURL("image/jpeg");
+
+        const formData = new FormData();
+        formData.append("image", dataURItoBlob(data), "image.jpg");
+
+        try {
+          const response = await fetch("/upload", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            console.log("Image uploaded successfully");
+          } else {
+            console.log("Image upload failed:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error uploading image:", error);
+        }
+      });
+
+      function dataURItoBlob(dataURI) {
+        const binary = atob(dataURI.split(",")[1]);
+        let array = [];
+
+        for (let i = 0; i < binary.length; i++) {
+          array.push(binary.charCodeAt(i));
+        }
+
+        return new Blob([new Uint8Array(array)], { type: "image/jpeg" });
+      }
+    </script>
+
+    <!-- 추가: 메뉴 결과 확인 페이지 링크 -->
+    <a href="/menu" target="_blank"
+      ><button id="translate">Translate</button></a
+    >
+  </body>
+</html>

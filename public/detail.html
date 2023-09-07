@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail</title>
+  </head>
+  <body>
+    <div id="result">
+      <h1 id="menuName"></h1>
+      <img id="menuImage" style="max-width: 100%" alt="메뉴 이미지" />
+      <p><strong>Ingredients:</strong> <span id="menuIngredients"></span></p>
+      <p><strong>Spicy:</strong> <span id="menuSpicy"></span></p>
+      <p><strong>Details:</strong> <span id="menuDetails"></span></p>
+    </div>
+    <script>
+      // 페이지 로드 시 자동으로 데이터 가져오기
+      document.addEventListener("DOMContentLoaded", fetchData);
+
+      async function fetchData() {
+        try {
+          const searchParams = new URLSearchParams(window.location.search);
+          const menu = searchParams.get("key");
+
+          if (!menu) {
+            document.getElementById("result").innerHTML = "메뉴 키가 없습니다.";
+            return;
+          }
+
+          const requestUrl = `/details?key=${encodeURIComponent(menu)}`;
+
+          // fetch를 사용하여 JSON 데이터 가져오기
+          const response = await fetch(requestUrl);
+
+          if (response.ok) {
+            const jsonData = await response.json();
+
+            // JSON 데이터를 가지고 표시
+            document.getElementById("menuName").textContent =
+              jsonData.menu_name;
+            document.getElementById("menuImage").src = jsonData.menu_img_url;
+            document.getElementById("menuIngredients").textContent =
+              jsonData.menu_ingredients;
+            document.getElementById("menuSpicy").textContent =
+              jsonData.menu_spicy;
+            document.getElementById("menuDetails").textContent =
+              jsonData.menu_details;
+          } else {
+            document.getElementById("result").innerHTML =
+              "요청에 실패했습니다.";
+          }
+        } catch (error) {
+          document.getElementById("result").innerHTML = "오류가 발생했습니다.";
+        }
+      }
+    </script>
+  </body>
+</html>

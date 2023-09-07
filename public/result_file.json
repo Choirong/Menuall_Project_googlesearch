@@ -1,0 +1,23 @@
+{
+    "version": "V2",
+    "requestId": "string",
+    "timestamp": 1693755956505,
+    "images": [
+        {
+            "uid": "35bc0298a72e475c818a94daff9717ae",
+            "name": "menu",
+            "inferResult": "SUCCESS",
+            "message": "SUCCESS",
+            "validationResult": {
+                "result": "NO_REQUESTED"
+            },
+            "convertedImageInfo": {
+                "width": 320,
+                "height": 240,
+                "pageIndex": 0,
+                "longImage": false
+            },
+            "fields": []
+        }
+    ]
+}
