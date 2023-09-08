@@ -18,7 +18,8 @@
       #canvas {
         display: block;
         margin-left: auto;
-        margin-right: auto; /* 비디오와 캔버스 가운데 정렬 */
+        margin-right: auto;
+        object-fit: cover; /* 비디오와 캔버스 가운데 정렬 */
       }
       #snap {
         position: absolute;
@@ -53,7 +54,7 @@
       <video
         id="video"
         width="320"
-        height="320"
+        height="240"
         autoplay
         muted
         playsinline
