@@ -14,12 +14,17 @@
       h1 {
         text-align: center; /* 텍스트 가운데 정렬 */
       }
-      #video,
-      #canvas {
+      #video {
         display: block;
         margin-left: auto;
         margin-right: auto;
         object-fit: cover; /* 비디오와 캔버스 가운데 정렬 */
+      }
+      #canvas {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        object-fit: contain; /* 비디오와 캔버스 가운데 정렬 */
       }
       #snap {
         position: absolute;
@@ -54,14 +59,14 @@
       <video
         id="video"
         width="320"
-        height="240"
+        height="480"
         autoplay
         muted
         playsinline
       ></video>
 
       <button id="snap">Take Picture</button>
-      <canvas id="canvas" width="320" height="240"></canvas>
+      <canvas id="canvas" width="320" height="480"></canvas>
     </div>
 
     <script>
