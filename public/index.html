@@ -18,6 +18,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 30px;
         object-fit: contain; /*  */
       }
       #canvas {
@@ -47,6 +48,10 @@
         width: 100%;
         min-width: 320px;
       }
+      .snap_container {
+        display: flex;
+        justify-content: center;
+      }
     </style>
   </head>
   <body>
@@ -64,9 +69,11 @@
         muted
         playsinline
       ></video>
-
-      <button id="snap">Take Picture</button>
       <!-- <canvas id="canvas" width="360" height="480"></canvas> -->
+    </div>
+
+    <div class="snap_container">
+      <button id="snap">Take Picture</button>
     </div>
 
     <div class="canvas_container">
