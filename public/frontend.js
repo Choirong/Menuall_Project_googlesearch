@@ -15,7 +15,7 @@ async function getMenuInfo(text) {
   const menuData = await fetch("./example_menu.json").then((response) =>
     response.json()
   );
-  const matchedMenu = menuData.find((menu) => menu["menu_name(kor)"] === text);
+  const matchedMenu = menuData.find((menu) => menu["menu_name_ko"] === text);
   return matchedMenu;
 }
 
@@ -109,7 +109,7 @@ async function drawResultItems(item) {
   // example_menu.json에 있는 메뉴만 버튼 생성
   if (matchedMenu) {
     // 영어 메뉴 이름 표시
-    overlayButton.textContent = matchedMenu["menu_name(eng)"];
+    overlayButton.textContent = matchedMenu["menu_name_en)"];
     overlayButton.style.left = `${minX + 20}px`;
     overlayButton.style.top = `${minY}px`;
     overlayButton.style.width = `${width * 0.8}px`;
@@ -117,12 +117,17 @@ async function drawResultItems(item) {
 
     // 버튼 클릭 이벤트 처리
     overlayButton.addEventListener("click", () => {
-      window.location.href = `/detail?key=${encodeURIComponent(
-        matchedMenu["menu_name(eng)"]
-      )}`;
+      const encodedName = encodeURIComponent(matchedMenu["menu_name_ko"]);
+      //이미지탭으로 연결
+      window.open(
+        `https://www.google.com/search?tbm=isch&q=${encodedName}`,
+        "_blank"
+      );
+
+      //그냥 검색(전체 검색탭)
+      // window.open(`https://www.google.com/search?q=${encodedName}`, "_blank");
     });
 
-    // 이미지 컨테이너에 텍스트와 버튼 추가
     imageContainer.appendChild(overlayText);
     imageContainer.appendChild(overlayButton);
   } else {

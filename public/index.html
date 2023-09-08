@@ -14,11 +14,17 @@
       h1 {
         text-align: center; /* 텍스트 가운데 정렬 */
       }
-      #video,
+      #video {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        object-fit: contain; /*  */
+      }
       #canvas {
         display: block;
         margin-left: auto;
-        margin-right: auto; /* 비디오와 캔버스 가운데 정렬 */
+        margin-right: auto;
+        object-fit: cover; /* 비디오와 캔버스 가운데 정렬 */
       }
       #snap {
         position: absolute;
@@ -37,6 +43,10 @@
         width: 100px; /* size of the rectangle */
         height: 30px;
       }
+      .container {
+        width: 100%;
+        min-width: 320px;
+      }
     </style>
   </head>
   <body>
@@ -45,17 +55,24 @@
     <h1>Scan the Menu</h1>
 
     <!-- autoplay, muted, playsinline 속성 추가 -->
-    <video
-      id="video"
-      width="320"
-      height="240"
-      autoplay
-      muted
-      playsinline
-    ></video>
+    <div class="container">
+      <video
+        id="video"
+        width="360"
+        height="480"
+        autoplay
+        muted
+        playsinline
+      ></video>
 
-    <button id="snap">Take Picture</button>
-    <canvas id="canvas" width="320" height="240"></canvas>
+      <button id="snap">Take Picture</button>
+      <!-- <canvas id="canvas" width="360" height="480"></canvas> -->
+    </div>
+
+    <div class="canvas_container">
+      <h1>Scanned Result Image</h1>
+      <canvas id="canvas" width="360" height="480"></canvas>
+    </div>
 
     <script>
       const video = document.getElementById("video");
