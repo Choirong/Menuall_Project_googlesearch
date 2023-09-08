@@ -1,10 +1,10 @@
 {
     "version": "V2",
     "requestId": "string",
-    "timestamp": 1694157914011,
+    "timestamp": 1694164271279,
     "images": [
         {
-            "uid": "edfc027103364bf896263e83c64c0000",
+            "uid": "212dfbcd34224bebaeb2d1c734ec6381",
             "name": "menu",
             "inferResult": "SUCCESS",
             "message": "SUCCESS",
@@ -12,8 +12,8 @@
                 "result": "NO_REQUESTED"
             },
             "convertedImageInfo": {
-                "width": 320,
-                "height": 240,
+                "width": 360,
+                "height": 480,
                 "pageIndex": 0,
                 "longImage": false
             },
