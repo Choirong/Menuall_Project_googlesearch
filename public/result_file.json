@@ -1,10 +1,10 @@
 {
     "version": "V2",
     "requestId": "string",
-    "timestamp": 1694139740334,
+    "timestamp": 1694140344062,
     "images": [
         {
-            "uid": "a50a94b340914531badf6ae0fb32c5e2",
+            "uid": "17c2631ecd704953b3956ee35fcdd42f",
             "name": "menu",
             "inferResult": "SUCCESS",
             "message": "SUCCESS",
