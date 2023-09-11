@@ -50,6 +50,11 @@
       .canvas_container {
         text-align: center;
       }
+      .translate_container {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+      }
     </style>
   </head>
   <body>
@@ -128,8 +133,10 @@
     </script>
 
     <!-- 추가: 메뉴 결과 확인 페이지 링크 -->
-    <a href="/menu" target="_blank"
-      ><button id="translate">Translate</button></a
-    >
+    <div class="translate_container">
+      <a href="/menu" target="_blank">
+        <button id="translate">Translate</button>
+      </a>
+    </div>
   </body>
 </html>

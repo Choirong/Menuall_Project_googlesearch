@@ -1,10 +1,10 @@
 {
     "version": "V2",
     "requestId": "string",
-    "timestamp": 1694171571549,
+    "timestamp": 1694426856737,
     "images": [
         {
-            "uid": "c6846372820748dc9e4aea155f85dfdf",
+            "uid": "d0a5815e178849e9a7dd3cd8cd77274b",
             "name": "menu",
             "inferResult": "SUCCESS",
             "message": "SUCCESS",
@@ -17,7 +17,89 @@
                 "pageIndex": 0,
                 "longImage": false
             },
-            "fields": []
+            "fields": [
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 209,
+                                "y": 157
+                            },
+                            {
+                                "x": 289,
+                                "y": 162
+                            },
+                            {
+                                "x": 286,
+                                "y": 213
+                            },
+                            {
+                                "x": 206,
+                                "y": 208
+                            }
+                        ]
+                    },
+                    "inferText": "내장국밥",
+                    "inferConfidence": 1,
+                    "type": "NORMAL",
+                    "lineBreak": true
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 55,
+                                "y": 233
+                            },
+                            {
+                                "x": 130,
+                                "y": 237
+                            },
+                            {
+                                "x": 127,
+                                "y": 286
+                            },
+                            {
+                                "x": 53,
+                                "y": 283
+                            }
+                        ]
+                    },
+                    "inferText": "누룽지탕",
+                    "inferConfidence": 0.9976,
+                    "type": "NORMAL",
+                    "lineBreak": true
+                },
+                {
+                    "valueType": "ALL",
+                    "boundingPoly": {
+                        "vertices": [
+                            {
+                                "x": 179,
+                                "y": 318
+                            },
+                            {
+                                "x": 252,
+                                "y": 318
+                            },
+                            {
+                                "x": 252,
+                                "y": 373
+                            },
+                            {
+                                "x": 179,
+                                "y": 373
+                            }
+                        ]
+                    },
+                    "inferText": "삼계탕",
+                    "inferConfidence": 0.9999,
+                    "type": "NORMAL",
+                    "lineBreak": true
+                }
+            ]
         }
     ]
 }
