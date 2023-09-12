@@ -3,7 +3,7 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 
-module.exports = function javaocr(base64Data) {
+module.exports = async function javaocr(base64Data) {
   function saveResultJSON(result, filename) {
     const filePath = path.join("public", filename); // __dirname 변수 제거
     fs.writeFileSync(filePath, JSON.stringify(result, null, 4));
@@ -12,7 +12,7 @@ module.exports = function javaocr(base64Data) {
 
   async function requestWithBase64() {
     try {
-      await axios.post(
+      const res = await axios.post(
         "https://his2mv8t58.apigw.ntruss.com/custom/v1/24361/8e4fba23a04694f73fda8619cd83761b24305c1f18d3533dd32560a9f95cdf5e/general", // APIGW Invoke URL
         {
           images: [
@@ -32,13 +32,14 @@ module.exports = function javaocr(base64Data) {
           },
         }
       );
+      return res;
     } catch (error) {
       console.warn("requestWithBase64 error", error.response);
       return false;
     }
   }
-  const result = requestWithBase64();
-  console.log("result:", result);
+  const result = await requestWithBase64();
+  console.log("result:", result.data.images[0].fields);
   return result;
 
   /*

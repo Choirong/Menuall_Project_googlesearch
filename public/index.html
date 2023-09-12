@@ -92,6 +92,21 @@
         color: rgb(255, 255, 255);
         position: relative;
       }
+      .VORA {
+        bottom: 0px;
+        padding-bottom: 30px;
+        text-align: right;
+        z-index: 4;
+        position: fixed;
+        right: 50px;
+        width: 100%;
+      }
+      #footer {
+        margin-left: auto;
+        margin-right: auto;
+        position: fixed;
+        padding-bottom: 20px;
+      }
     </style>
   </head>
   <body>
@@ -130,7 +145,16 @@
       </a>-->
       <button id="translate">Translate</button>
     </div>
-
+    <footer class="footer">
+      <div class="VORA">
+        if you have a problem, DM to
+        <a
+          href="https://instagram.com/inno_vora?igshid=MjEwN2IyYWYwYw=="
+          style="color: #ffa039"
+          >team VORA.</a
+        >
+      </div>
+    </footer>
     <script>
       const video = document.getElementById("video");
       const snapBtn = document.getElementById("snap");
@@ -158,7 +182,8 @@
             body: formData,
           });
 
-          console.log(response.json());
+          const json = await response.json();
+          console.log(json);
 
           //await fetch("/trans", {
           //method: "POST",
