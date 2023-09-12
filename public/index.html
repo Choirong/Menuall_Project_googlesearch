@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menuall</title>
     <style>
       #logo {
@@ -50,10 +49,48 @@
       .canvas_container {
         text-align: center;
       }
+      #imageContainer {
+        position: relative;
+        display: inline-block;
+      }
       .translate_container {
         width: 100%;
         justify-content: center;
         display: flex;
+      }
+      .originalImage {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .overlayText {
+        position: absolute;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 2px;
+      }
+      .overlayButton {
+        position: absolute;
+        padding: 5px 10px;
+        background-color: rgb(255, 111, 0);
+        color: white;
+        cursor: pointer;
+      }
+      .menuboundingBox {
+        /* border: 2px solid red;
+        position: absolute;
+        z-index: 1000; */
+        position: absolute;
+        padding: 5px 10px;
+        background-color: rgba(0, 252, 55, 0.6);
+        color: white;
+        cursor: pointer;
+      }
+      .menuText {
+        font-size: 100px;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+        position: relative;
       }
     </style>
   </head>
@@ -81,7 +118,17 @@
 
     <div class="canvas_container">
       <h1>Scanned Result Image</h1>
-      <canvas id="canvas" width="360" height="480"></canvas>
+      <div id="imageContainer">
+        <canvas id="canvas" width="360" height="480"></canvas>
+      </div>
+    </div>
+
+    <!-- 추가: 메뉴 결과 확인 페이지 링크 -->
+    <div class="translate_container">
+      <!-- <a href="/menu" target="_blank">
+        <button id="translate">Translate</button>
+      </a>-->
+      <button id="translate">Translate</button>
     </div>
 
     <script>
@@ -89,6 +136,7 @@
       const snapBtn = document.getElementById("snap");
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
+      const trans = document.getElementById("translate");
 
       navigator.mediaDevices
         .getUserMedia({ video: { facingMode: "environment" } })
@@ -110,14 +158,21 @@
             body: formData,
           });
 
-          if (response.ok) {
-            console.log("Image uploaded successfully");
-          } else {
-            console.log("Image upload failed:", response.statusText);
-          }
+          console.log(response.json());
+
+          //await fetch("/trans", {
+          //method: "POST",
+          //body: JSON.stringify(response.json().data),
+          //});
         } catch (error) {
           console.error("Error uploading image:", error);
         }
+      });
+
+      trans.addEventListener("click", () => {
+        var myScript = document.createElement("script");
+        myScript.setAttribute("src", "frontend.js");
+        document.body.insertBefore(myScript, document.body.firstChild);
       });
 
       function dataURItoBlob(dataURI) {
@@ -131,12 +186,5 @@
         return new Blob([new Uint8Array(array)], { type: "image/jpeg" });
       }
     </script>
-
-    <!-- 추가: 메뉴 결과 확인 페이지 링크 -->
-    <div class="translate_container">
-      <a href="/menu" target="_blank">
-        <button id="translate">Translate</button>
-      </a>
-    </div>
   </body>
 </html>

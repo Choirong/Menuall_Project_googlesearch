@@ -4,15 +4,21 @@ const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
 const javaocr = require("./public/javaocr");
+const translation = require("./public/frontend");
 
 const app = express();
 app.use(express.static("public"));
+
+//view Engine 적용
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  //res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.render("test");
 });
 
 app.post("/upload", upload.single("image"), async (req, res) => {
@@ -22,15 +28,20 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 
     const isValid = await isImageValid(dataUri);
     if (isValid) {
-      await saveImage(base64Data);
-      javaocr();
-      res.send("success");
+      //await saveImage(base64Data);
+      await javaocr(base64Data)
+        .then((response) => res.status(200).send(response))
+        .catch((err) => res.status(400).send(err));
     } else {
       res.status(400).send("Invalid image data");
     }
   } catch (error) {
     res.status(500).send(error.message);
   }
+});
+
+app.post("/trans", (req, res) => {
+  translation(req);
 });
 
 app.get("/menu", (req, res) => {
@@ -97,7 +108,8 @@ async function saveImage(base64Data) {
     const filePath = path.join(__dirname, "./public", fileName);
     const data = base64Data.replace(/^data:image\/jpeg;base64,/, "");
 
-    await fs.promises.writeFile(filePath, data, { encoding: "base64" });
+    //await fs.promises.writeFile(filePath, data, { encoding: "base64" });
+    console.log(base64Data);
     console.log("Image saved:", filePath);
   } catch (error) {
     console.error("Error saving image:", error);
