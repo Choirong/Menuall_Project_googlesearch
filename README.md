@@ -2,4 +2,4 @@
 
 Menuall 프로젝트 구글 연결 MVP
 
-dev에서 수정
+dev_cdh_1에서 개발준비 완료
