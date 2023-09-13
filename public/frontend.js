@@ -1,15 +1,27 @@
-fetch("./result_file.json")
-  .then((response) => response.json())
-  .then((data) => {
-    if (data && data.images && data.images[0] && data.images[0].fields) {
-      data.images[0].fields.forEach(drawResultItems);
-    } else {
-      console.error("에러: fields 속성이 없습니다.");
-    }
-  })
-  .catch((error) => {
-    console.error("에러:", error);
-  });
+// fetch("/upload", {
+//   method: "POST",
+//   body: formData,
+// })
+//   .then((response) => response.json())
+//   .then((data) => {
+//     if (data && data.images && data.images[0] && data.images[0].fields) {
+//       data.images[0].fields.forEach(drawResultItems);
+//     } else {
+//       console.error("에러: fields 속성이 없습니다.");
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("에러:", error);
+//   });
+
+function translation(data) {
+  if (data && data.images && data.images[0] && data.images[0].fields) {
+    data.images[0].fields.forEach(drawResultItems);
+    //debugger;
+  } else {
+    console.error("에러: fields 속성이 없습니다.");
+  }
+}
 
 async function getMenuInfo(text) {
   const menuData = await fetch("./example_menu.json").then((response) =>
@@ -68,7 +80,7 @@ async function drawResultItems(item) {
   const matchedMenu = await getMenuInfo(text);
 
   // "메뉴"를 인식해서 박스에 "MENU"를 표시
-  if (text.includes("매뉴")) {
+  if (text.includes("메뉴")) {
     const minX = Math.min(
       vertices[0].x,
       vertices[1].x,

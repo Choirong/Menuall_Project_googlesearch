@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menuall</title>
     <style>
       #logo {
@@ -27,16 +26,11 @@
         object-fit: cover; /* 비디오와 캔버스 가운데 정렬 */
       }
       #snap {
-        position: absolute;
-        bottom: 10%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         border-radius: 50%;
         width: 60px;
         height: 60px;
       }
       #translate {
-        position: absolute;
         bottom: 5%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -46,6 +40,72 @@
       .container {
         width: 100%;
         min-width: 320px;
+      }
+      .snap_container {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+      }
+      .canvas_container {
+        text-align: center;
+      }
+      #imageContainer {
+        position: relative;
+        display: inline-block;
+      }
+      .translate_container {
+        width: 100%;
+        justify-content: center;
+        display: flex;
+      }
+      .originalImage {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .overlayText {
+        position: absolute;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 2px;
+      }
+      .overlayButton {
+        position: absolute;
+        padding: 5px 10px;
+        background-color: rgb(255, 111, 0);
+        color: white;
+        cursor: pointer;
+      }
+      .menuboundingBox {
+        /* border: 2px solid red;
+        position: absolute;
+        z-index: 1000; */
+        position: absolute;
+        padding: 5px 10px;
+        background-color: rgba(0, 252, 55, 0.6);
+        color: white;
+        cursor: pointer;
+      }
+      .menuText {
+        font-size: 100px;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+        position: relative;
+      }
+      .VORA {
+        bottom: 0px;
+        padding-bottom: 30px;
+        text-align: right;
+        z-index: 4;
+        position: fixed;
+        right: 50px;
+        width: 100%;
+      }
+      #footer {
+        margin-left: auto;
+        margin-right: auto;
+        position: fixed;
+        padding-bottom: 20px;
       }
     </style>
   </head>
@@ -64,16 +124,38 @@
         muted
         playsinline
       ></video>
-
-      <button id="snap">Take Picture</button>
       <!-- <canvas id="canvas" width="360" height="480"></canvas> -->
+    </div>
+
+    <div class="snap_container">
+      <button id="snap">Take Picture</button>
     </div>
 
     <div class="canvas_container">
       <h1>Scanned Result Image</h1>
-      <canvas id="canvas" width="360" height="480"></canvas>
+      <div id="imageContainer">
+        <canvas id="canvas" width="360" height="480"></canvas>
+      </div>
     </div>
 
+    <!-- 추가: 메뉴 결과 확인 페이지 링크 -->
+    <div class="translate_container">
+      <!-- <a href="/menu" target="_blank">
+        <button id="translate">Translate</button>
+      </a>-->
+      <button id="translate">Translate</button>
+    </div>
+    <footer class="footer">
+      <div class="VORA">
+        if you have a problem, DM to
+        <a
+          href="https://instagram.com/inno_vora?igshid=MjEwN2IyYWYwYw=="
+          style="color: #ffa039"
+          >team VORA.</a
+        >
+      </div>
+    </footer>
+    <script type="text/javascript" src="./frontend.js"></script>
     <script>
       const video = document.getElementById("video");
       const snapBtn = document.getElementById("snap");
@@ -91,9 +173,9 @@
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         const data = canvas.toDataURL("image/jpeg");
 
+        //서버에 보내기 위한 형식
         const formData = new FormData();
         formData.append("image", dataURItoBlob(data), "image.jpg");
-
         try {
           const response = await fetch("/upload", {
             method: "POST",
@@ -101,7 +183,7 @@
           });
 
           if (response.ok) {
-            console.log("Image uploaded successfully");
+            await response.json().then((res) => translation(res));
           } else {
             console.log("Image upload failed:", response.statusText);
           }
@@ -121,10 +203,5 @@
         return new Blob([new Uint8Array(array)], { type: "image/jpeg" });
       }
     </script>
-
-    <!-- 추가: 메뉴 결과 확인 페이지 링크 -->
-    <a href="/menu" target="_blank"
-      ><button id="translate">Translate</button></a
-    >
   </body>
 </html>
