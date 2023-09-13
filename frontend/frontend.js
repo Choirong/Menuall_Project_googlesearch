@@ -24,7 +24,7 @@ function translation(data) {
 }
 
 async function getMenuInfo(text) {
-  const menuData = await fetch("./menu_DB.json").then((response) =>
+  const menuData = await fetch("./DB/menu_DB.json").then((response) =>
     response.json()
   );
   const matchedMenu = menuData.find((menu) => menu["menu_name_ko"] === text);

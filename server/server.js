@@ -7,14 +7,14 @@ const javaocr = require("./javaocr");
 const translation = require("../frontend/frontend");
 
 const app = express();
-app.use(express.static("frontend"));
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 app.get("/", (req, res) => {
-  //res.sendFile(path.join(__dirname, "frontend", "index.html"));
-  res.render("test");
+  res.sendFile(path.join(__dirname, "frontend", "index.html"));
+  // res.render("test");
 });
 
 app.post("/upload", upload.single("image"), async (req, res) => {
@@ -41,18 +41,18 @@ app.post("/trans", (req, res) => {
   translation(req);
 });
 
-app.get("/menu", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "index2.html"));
-});
+// app.get("/menu", (req, res) => {
+//   res.sendFile(path.join(__dirname, "frontend", "index2.html"));
+// });
 
-app.get("/detail", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "detail.html"));
-});
+// app.get("/detail", (req, res) => {
+//   res.sendFile(path.join(__dirname, "frontend", "detail.html"));
+// });
 
 app.get("/details", async (req, res) => {
   const menuKey = req.query.key;
   const menuData = JSON.parse(
-    await fs.promises.readFile("./frontend/menu_DB.json", "utf8")
+    await fs.promises.readFile("./DB/menu_DB.json", "utf8")
   );
   const matchedMenu = menuData.find((menu) => menu["menu_name_en"] === menuKey);
 
@@ -99,19 +99,20 @@ async function isImageValid(base64Data) {
   }
 }
 
-async function saveImage(base64Data) {
-  try {
-    const fileName = "menu.jpg";
-    const filePath = path.join(__dirname, "./frontend", fileName);
-    const data = base64Data.replace(/^data:image\/jpeg;base64,/, "");
+// 서버에 menu.jpg를 저장했던 코드
+// async function saveImage(base64Data) {
+//   try {
+//     const fileName = "menu.jpg";
+//     const filePath = path.join(__dirname, "./frontend", fileName);
+//     const data = base64Data.replace(/^data:image\/jpeg;base64,/, "");
 
-    //await fs.promises.writeFile(filePath, data, { encoding: "base64" });
-    console.log(base64Data);
-    console.log("Image saved:", filePath);
-  } catch (error) {
-    console.error("Error saving image:", error);
-  }
-}
+//     //await fs.promises.writeFile(filePath, data, { encoding: "base64" });
+//     console.log(base64Data);
+//     console.log("Image saved:", filePath);
+//   } catch (error) {
+//     console.error("Error saving image:", error);
+//   }
+// }
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));

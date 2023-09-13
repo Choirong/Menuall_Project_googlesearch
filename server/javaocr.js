@@ -39,6 +39,7 @@ module.exports = async function javaocr(base64Data) {
     }
   }
   const result = await requestWithBase64();
+  console.log("result입니다:", result);
   return result.data;
 
   /*
