@@ -175,20 +175,25 @@
 
         const formData = new FormData();
         formData.append("image", dataURItoBlob(data), "image.jpg");
-
         try {
           const response = await fetch("/upload", {
             method: "POST",
             body: formData,
           });
 
-          const json = await response.json();
-          console.log(json);
+          if (response.ok) {
+            console.log("Image uploaded successfully");
+          } else {
+            console.log("Image upload failed:", response.statusText);
+          }
+          // const json = await response.json();
+          // console.log("이거는 업로드된 이미지가 잘 출력됐는지 화인");
+          // console.log(json);
 
-          //await fetch("/trans", {
-          //method: "POST",
-          //body: JSON.stringify(response.json().data),
-          //});
+          // await fetch("/trans", {
+          //   method: "POST",
+          //   body: JSON,
+          // });
         } catch (error) {
           console.error("Error uploading image:", error);
         }

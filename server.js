@@ -9,10 +9,6 @@ const translation = require("./public/frontend");
 const app = express();
 app.use(express.static("public"));
 
-//view Engine 적용
-app.set("view engine", "ejs");
-app.set("views", "./views");
-
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
