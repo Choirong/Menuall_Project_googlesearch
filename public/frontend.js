@@ -15,6 +15,10 @@
 //   });
 
 function translation(data) {
+  const imageContainer = document.querySelector("#imageContainer");
+  imageContainer.innerHTML = "";
+  console.log(imageContainer);
+
   if (data && data.images && data.images[0] && data.images[0].fields) {
     data.images[0].fields.forEach(drawResultItems);
     //debugger;
