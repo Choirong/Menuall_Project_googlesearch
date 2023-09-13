@@ -39,8 +39,7 @@ module.exports = async function javaocr(base64Data) {
     }
   }
   const result = await requestWithBase64();
-  console.log("result:", result.data.images[0].fields);
-  return result;
+  return result.data;
 
   /*
   function requestWithFile() {

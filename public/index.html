@@ -155,12 +155,12 @@
         >
       </div>
     </footer>
+    <script type="text/javascript" src="./frontend.js"></script>
     <script>
       const video = document.getElementById("video");
       const snapBtn = document.getElementById("snap");
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
-      const trans = document.getElementById("translate");
 
       navigator.mediaDevices
         .getUserMedia({ video: { facingMode: "environment" } })
@@ -173,6 +173,7 @@
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         const data = canvas.toDataURL("image/jpeg");
 
+        //서버에 보내기 위한 형식
         const formData = new FormData();
         formData.append("image", dataURItoBlob(data), "image.jpg");
         try {
@@ -182,27 +183,13 @@
           });
 
           if (response.ok) {
-            console.log("Image uploaded successfully");
+            await response.json().then((res) => translation(res));
           } else {
             console.log("Image upload failed:", response.statusText);
           }
-          // const json = await response.json();
-          // console.log("이거는 업로드된 이미지가 잘 출력됐는지 화인");
-          // console.log(json);
-
-          // await fetch("/trans", {
-          //   method: "POST",
-          //   body: JSON,
-          // });
         } catch (error) {
           console.error("Error uploading image:", error);
         }
-      });
-
-      trans.addEventListener("click", () => {
-        var myScript = document.createElement("script");
-        myScript.setAttribute("src", "frontend.js");
-        document.body.insertBefore(myScript, document.body.firstChild);
       });
 
       function dataURItoBlob(dataURI) {

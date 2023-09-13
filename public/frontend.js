@@ -14,16 +14,14 @@
 //     console.error("에러:", error);
 //   });
 
-module.exports = function translation(data) {
-  console.log("데이터입니다:", JSON.parse(data));
+function translation(data) {
   if (data && data.images && data.images[0] && data.images[0].fields) {
-    console.log("데이터입니다:", data);
     data.images[0].fields.forEach(drawResultItems);
     //debugger;
   } else {
     console.error("에러: fields 속성이 없습니다.");
   }
-};
+}
 
 async function getMenuInfo(text) {
   const menuData = await fetch("./example_menu.json").then((response) =>

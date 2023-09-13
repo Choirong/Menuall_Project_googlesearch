@@ -24,9 +24,10 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 
     const isValid = await isImageValid(dataUri);
     if (isValid) {
-      //await saveImage(base64Data);
       await javaocr(base64Data)
-        .then((response) => res.status(200).send(response))
+        .then((response) => {
+          res.status(200).send(response);
+        })
         .catch((err) => res.status(400).send(err));
     } else {
       res.status(400).send("Invalid image data");
