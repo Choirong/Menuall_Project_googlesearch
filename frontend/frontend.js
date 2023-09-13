@@ -24,7 +24,7 @@ function translation(data) {
 }
 
 async function getMenuInfo(text) {
-  const menuData = await fetch("./example_menu.json").then((response) =>
+  const menuData = await fetch("./menu_DB.json").then((response) =>
     response.json()
   );
   const matchedMenu = menuData.find((menu) => menu["menu_name_ko"] === text);
@@ -118,7 +118,7 @@ async function drawResultItems(item) {
     imageContainer.appendChild(menuText);
   }
 
-  // example_menu.json에 있는 메뉴만 버튼 생성
+  // menu_DB.json에 있는 메뉴만 버튼 생성
   if (matchedMenu) {
     // 영어 메뉴 이름 표시
     overlayButton.textContent = matchedMenu["menu_name_en)"];

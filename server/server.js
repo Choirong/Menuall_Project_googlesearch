@@ -3,17 +3,17 @@ const multer = require("multer");
 const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
-const javaocr = require("./public/javaocr");
-const translation = require("./public/frontend");
+const javaocr = require("./javaocr");
+const translation = require("../frontend/frontend");
 
 const app = express();
-app.use(express.static("public"));
+app.use(express.static("frontend"));
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 app.get("/", (req, res) => {
-  //res.sendFile(path.join(__dirname, "public", "index.html"));
+  //res.sendFile(path.join(__dirname, "frontend", "index.html"));
   res.render("test");
 });
 
@@ -42,17 +42,17 @@ app.post("/trans", (req, res) => {
 });
 
 app.get("/menu", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index2.html"));
+  res.sendFile(path.join(__dirname, "frontend", "index2.html"));
 });
 
 app.get("/detail", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "detail.html"));
+  res.sendFile(path.join(__dirname, "frontend", "detail.html"));
 });
 
 app.get("/details", async (req, res) => {
   const menuKey = req.query.key;
   const menuData = JSON.parse(
-    await fs.promises.readFile("./public/example_menu.json", "utf8")
+    await fs.promises.readFile("./frontend/menu_DB.json", "utf8")
   );
   const matchedMenu = menuData.find((menu) => menu["menu_name_en"] === menuKey);
 
@@ -68,7 +68,7 @@ app.get("/details", async (req, res) => {
 // app.get("/details", async (req, res) => {
 //   const menuKey = req.query.key;
 //   const menuData = JSON.parse(
-//     await fs.promises.readFile("./public/example_menu.json", "utf8")
+//     await fs.promises.readFile("./frontend/menu_DB.json", "utf8")
 //   );
 //   const matchedMenu = menuData.find(
 //     (menu) => menu["menu_name(eng)"] === menuKey
@@ -102,7 +102,7 @@ async function isImageValid(base64Data) {
 async function saveImage(base64Data) {
   try {
     const fileName = "menu.jpg";
-    const filePath = path.join(__dirname, "./public", fileName);
+    const filePath = path.join(__dirname, "./frontend", fileName);
     const data = base64Data.replace(/^data:image\/jpeg;base64,/, "");
 
     //await fs.promises.writeFile(filePath, data, { encoding: "base64" });

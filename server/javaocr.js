@@ -5,7 +5,7 @@ const path = require("path");
 
 module.exports = async function javaocr(base64Data) {
   function saveResultJSON(result, filename) {
-    const filePath = path.join("public", filename); // __dirname 변수 제거
+    const filePath = path.join("frontend", filename); // __dirname 변수 제거
     fs.writeFileSync(filePath, JSON.stringify(result, null, 4));
     console.log(`${filePath} 파일에 결과를 저장했습니다.`);
   }
@@ -44,7 +44,7 @@ module.exports = async function javaocr(base64Data) {
   /*
   function requestWithFile() {
     console.log("withFile");
-    const imagePath = "./public/menu.jpg"; // 이미지 파일 경로
+    const imagePath = "./frontend/menu.jpg"; // 이미지 파일 경로
     const file = fs.createReadStream(imagePath); // image file object.
     const message = {
       images: [
