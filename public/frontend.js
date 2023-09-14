@@ -15,9 +15,6 @@
 //   });
 
 function translation(data) {
-  // const imageContainer = document.querySelector("#imageContainer");
-  // imageContainer.innerHTML = "";
-  // console.log(imageContainer);
   if (data && data.images && data.images[0] && data.images[0].fields) {
     data.images[0].fields.forEach(drawResultItems);
     //debugger;
@@ -46,7 +43,12 @@ async function drawResultItems(item) {
   // 재촬영 시, 생성됐던 텍스트 삭제
   const existingOverlayText = imageContainer.querySelectorAll(".overlayText");
   existingOverlayText.forEach((textElement) => textElement.remove());
+  // 재촬영 시, 생성됐던 텍스트 삭제
+  const existingButtonInfo =
+    imageContainer.querySelectorAll(".overlayButtonInfo");
+  existingButtonInfo.forEach((textElement) => textElement.remove());
 
+  //이미지에서 (0, 0)은 맨 왼쪽 위에이다. X는 오른쪽으로 증가, Y는 아래쪽으로 증가.
   const minX = Math.min(
     vertices[0].x,
     vertices[1].x,
@@ -77,7 +79,7 @@ async function drawResultItems(item) {
   const width = Math.abs(vertices[0].x - vertices[1].x);
   const height = Math.abs(vertices[0].y - vertices[2].y);
 
-  // 텍스트 생성
+  // 버튼 밖의 원래 음식명 텍스트 생성
   const overlayText = document.createElement("div");
   overlayText.className = "overlayText";
   overlayText.textContent = text;
@@ -130,12 +132,20 @@ async function drawResultItems(item) {
 
   // example_menu.json에 있는 메뉴만 버튼 생성
   if (matchedMenu) {
-    // 영어 메뉴 이름 표시
+    // 버튼 생성
     overlayButton.textContent = matchedMenu["menu_name_en)"];
-    overlayButton.style.left = `${minX + 20}px`;
+    overlayButton.style.left = `${minX}px`;
     overlayButton.style.top = `${minY}px`;
     overlayButton.style.width = `${width * 0.8}px`;
     overlayButton.style.height = `${height * 0.8}px`;
+
+    // overlayButtonInfo 생성 및 초기화(경석이가 해결해줄)
+    const overlayButtonInfo = document.createElement("div");
+    overlayButtonInfo.className = "overlayButtonInfo";
+    overlayButtonInfo.textContent = matchedMenu["menu_name_en"];
+    overlayButtonInfo.style.position = "absolute"; // 수정: absolute로 변경
+    overlayButtonInfo.style.left = `${minX + 20}px`; // 수정: 버튼과 같은 위치로 설정
+    overlayButtonInfo.style.top = `${minY}px`; // 수정: 버튼과 같은 위치로 설정
 
     // 버튼 클릭 이벤트 처리
     overlayButton.addEventListener("click", () => {
@@ -152,6 +162,7 @@ async function drawResultItems(item) {
 
     imageContainer.appendChild(overlayText);
     imageContainer.appendChild(overlayButton);
+    imageContainer.appendChild(overlayButtonInfo);
   } else {
     // 메뉴 진행 중임을 알림
     //alert(`Oops!! "${text}" 메뉴가 아직 준비되지 않았어요! 죄송합니다.`);
