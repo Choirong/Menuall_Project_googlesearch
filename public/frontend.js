@@ -15,10 +15,9 @@
 //   });
 
 function translation(data) {
-  const imageContainer = document.querySelector("#imageContainer");
-  imageContainer.innerHTML = "";
-  console.log(imageContainer);
-
+  // const imageContainer = document.querySelector("#imageContainer");
+  // imageContainer.innerHTML = "";
+  // console.log(imageContainer);
   if (data && data.images && data.images[0] && data.images[0].fields) {
     data.images[0].fields.forEach(drawResultItems);
     //debugger;
@@ -40,6 +39,13 @@ async function drawResultItems(item) {
   const text = item.inferText;
 
   const imageContainer = document.querySelector("#imageContainer");
+
+  // 재촬영 시, 생성됐던 버튼 삭제
+  const existingButtons = imageContainer.querySelectorAll(".overlayButton");
+  existingButtons.forEach((button) => button.remove());
+  // 재촬영 시, 생성됐던 텍스트 삭제
+  const existingOverlayText = imageContainer.querySelectorAll(".overlayText");
+  existingOverlayText.forEach((textElement) => textElement.remove());
 
   const minX = Math.min(
     vertices[0].x,
